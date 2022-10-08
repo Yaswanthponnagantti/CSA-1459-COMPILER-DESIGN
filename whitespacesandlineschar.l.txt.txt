@@ -1,0 +1,28 @@
+
+%{
+#include<stdio.h>
+#include<stdlib.h>
+int count=0,space=0,tcount=0,rcount=0;  /*Global variables*/
+%}
+
+%%
+
+\n count++;				
+" " space++;			
+\t tcount++;			
+
+[^\t" "\n] rcount++; 	
+. ;
+%%
+int main(void)
+{
+yyin=fopen("q1.txt","r");								
+yylex();	
+printf("Number of lines are:: %d\n",count);				
+printf("Number of spaces are:: %d\n",space);			
+printf("Number of tab character are:: %d\n",tcount);    
+printf("Number of rest character are:: %d\n",rcount);   
+return 0;
+}
+int yywrap()
+{return 1;}
